@@ -1,5 +1,7 @@
 {
 	"pageTitle": "WinWinTravel frontend test task",
 	"loadingFilters": "Loading filters...",
-	"failedToLoadFilters": "Failed to load filters."
+	"failedToLoadFilters": "Failed to load filters.",
+	"availableFilters": "Available filters",
+	"selectedFilters": "Selected filters"
 }
