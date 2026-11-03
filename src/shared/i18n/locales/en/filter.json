@@ -1,1 +1,5 @@
-{}
+{
+	"pageTitle": "WinWinTravel frontend test task",
+	"loadingFilters": "Loading filters...",
+	"failedToLoadFilters": "Failed to load filters."
+}
