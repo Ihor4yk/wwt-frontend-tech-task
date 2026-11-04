@@ -3,5 +3,8 @@
 	"loadingFilters": "Loading filters...",
 	"failedToLoadFilters": "Failed to load filters.",
 	"availableFilters": "Available filters",
-	"selectedFilters": "Selected filters"
+	"selectedFilters": "Selected filters",
+	"filterModalTitle": "Filter",
+	"applyFilters": "Apply",
+	"closeFilterModal": "Close filter dialog"
 }
