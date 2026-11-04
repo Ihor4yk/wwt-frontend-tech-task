@@ -6,5 +6,6 @@
 	"selectedFilters": "Selected filters",
 	"filterModalTitle": "Filter",
 	"applyFilters": "Apply",
-	"closeFilterModal": "Close filter dialog"
+	"closeFilterModal": "Close filter dialog",
+	"openFilterModal": "Open filters"
 }
