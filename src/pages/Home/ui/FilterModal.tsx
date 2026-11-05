@@ -106,6 +106,10 @@ export const FilterModal = ({
 		})
 	}
 
+	const handleClearAll = () => {
+		setDraft({})
+	}
+
 	const handleApply = () => {
 		const filters = filterItems.flatMap(filter => {
 			const selectedOptionIds = new Set(draft[filter.id] ?? [])
@@ -138,7 +142,7 @@ export const FilterModal = ({
 			}}
 			className="fixed inset-0 m-0 h-dvh w-full max-h-none max-w-none overflow-x-hidden overflow-y-auto overscroll-contain border-0 bg-transparent p-0 text-[#31393C] [scrollbar-gutter:stable_both-edges] [&::backdrop]:bg-[rgba(27,27,27,0.3)] [&::backdrop]:backdrop-blur-[12.5px]"
 		>
-			<div className="mx-auto mt-4 mb-4 w-[calc(100vw-2rem)] max-w-[1280px] rounded-2xl bg-white xl:mt-20 xl:mb-20 xl:w-[calc(100vw-160px)]">
+			<div className="mx-auto mt-4 mb-4 w-[calc(100vw-2rem)] max-w-[1280px] rounded-2xl bg-white @container/modal xl:mt-20 xl:mb-20 xl:w-[calc(100vw-160px)]">
 				<header className="mx-4 grid h-20 grid-cols-[1fr_auto_1fr] items-center border-b-2 border-[#B4B4B4] sm:mx-8 sm:h-[113px]">
 					<h2
 						id={titleId}
@@ -182,14 +186,23 @@ export const FilterModal = ({
 						))}
 					</div>
 				</div>
-				<footer className="mx-4 flex justify-center border-t-2 border-[#B4B4B4] py-4 sm:mx-8 sm:box-border sm:h-[136px] sm:pt-[32px] sm:pb-10">
-					<button
-						type="button"
-						onClick={handleApply}
-						className="h-16 w-full cursor-pointer rounded-2xl bg-[#FF5F00] font-[Inter] text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C] sm:w-[184px]"
-					>
-						{t('applyFilters')}
-					</button>
+				<footer className="mx-4 flex justify-center border-t-2 border-[#B4B4B4] py-4 sm:mx-8 sm:box-border sm:h-[136px] sm:pt-[32px] sm:pb-10 @max-[556px]/modal:h-auto @max-[556px]/modal:min-h-[136px]">
+					<div className="grid w-full grid-cols-[minmax(0,1fr)_184px_minmax(0,1fr)] items-center gap-x-4 @max-[556px]/modal:grid-cols-1 @max-[556px]/modal:gap-y-3">
+						<button
+							type="button"
+							onClick={handleApply}
+							className="col-start-2 row-start-1 h-16 w-[184px] justify-self-center cursor-pointer rounded-2xl bg-[#FF5F00] font-[Inter] text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C] @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-1"
+						>
+							{t('applyFilters')}
+						</button>
+						<button
+							type="button"
+							onClick={handleClearAll}
+							className="col-start-3 row-start-1 justify-self-end cursor-pointer whitespace-nowrap border-0 bg-transparent p-0 text-center font-[Inter] text-base leading-none font-medium text-[#078691] underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#078691] @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-2"
+						>
+							{t('clearAllParameters')}
+						</button>
+					</div>
 				</footer>
 			</div>
 		</dialog>

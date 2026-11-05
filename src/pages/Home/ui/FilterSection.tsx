@@ -10,6 +10,8 @@ interface FilterSectionProps {
 	onOptionChange: (optionId: string, checked: boolean) => void
 }
 
+const formatFilterName = (name: string) => name.replace(/,\s+(and\b)/i, ' $1')
+
 export const FilterSection = ({
 	filter,
 	selectedOptionIds,
@@ -35,7 +37,7 @@ export const FilterSection = ({
 				id={headingId}
 				className="font-[Inter] text-2xl leading-[29px] font-medium text-[#31393C]"
 			>
-				{filter.name}
+				{formatFilterName(filter.name)}
 			</h3>
 			<div
 				style={gridStyle}

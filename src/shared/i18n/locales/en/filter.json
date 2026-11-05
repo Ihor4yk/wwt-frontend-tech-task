@@ -7,5 +7,6 @@
 	"filterModalTitle": "Filter",
 	"applyFilters": "Apply",
 	"closeFilterModal": "Close filter dialog",
-	"openFilterModal": "Open filters"
+	"openFilterModal": "Open filters",
+	"clearAllParameters": "Clear all parameters"
 }
