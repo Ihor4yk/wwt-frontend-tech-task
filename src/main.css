@@ -1,2 +1,36 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
+@theme {
+	--color-brand: #ff5f00;
+	--color-text-primary: #31393c;
+	--color-text-secondary: #474747;
+	--color-text-link: #078691;
+	--color-border-default: #b4b4b4;
+	--color-modal-overlay: #1b1b1b;
+	--font-inter: Inter, sans-serif;
+	--shadow-modal: 0px 2px 12px #00000024;
+}
+
+@layer components {
+	.modal-dialog {
+		color: var(--color-text-primary);
+	}
+
+	.modal-dialog::backdrop {
+		background-color: color-mix(
+			in srgb,
+			var(--color-modal-overlay) 30%,
+			transparent
+		);
+		backdrop-filter: blur(12.5px);
+	}
+
+	.modal-close-button {
+		@apply flex size-6 cursor-pointer items-center justify-center rounded-full p-0 text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+	}
+
+	.modal-primary-button {
+		@apply cursor-pointer rounded-2xl bg-brand font-inter text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary;
+	}
+}

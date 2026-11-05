@@ -31,11 +31,11 @@ export const FilterSection = ({
 	return (
 		<section
 			aria-labelledby={headingId}
-			className="flex flex-col gap-6 border-b-2 border-[#B4B4B4] py-8 last:border-b-0"
+			className="flex flex-col gap-6 border-b-2 border-border-default py-8 last:border-b-0"
 		>
 			<h3
 				id={headingId}
-				className="font-[Inter] text-2xl leading-[29px] font-medium text-[#31393C]"
+				className="font-inter text-2xl leading-[29px] font-medium text-text-primary"
 			>
 				{formatFilterName(filter.name)}
 			</h3>

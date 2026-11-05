@@ -188,13 +188,13 @@ export const FilterModal = ({
 					}
 				}
 			}}
-			className="fixed inset-0 m-0 h-dvh w-full max-h-none max-w-none overflow-x-hidden overflow-y-auto overscroll-contain border-0 bg-transparent p-0 text-[#31393C] [scrollbar-gutter:stable_both-edges] [&::backdrop]:bg-[rgba(27,27,27,0.3)] [&::backdrop]:backdrop-blur-[12.5px]"
+			className="modal-dialog fixed inset-0 m-0 h-dvh w-full max-h-none max-w-none overflow-x-hidden overflow-y-auto overscroll-contain border-0 bg-transparent p-0 [scrollbar-gutter:stable_both-edges]"
 		>
 			<div className="mx-auto mt-4 mb-4 w-[calc(100vw-2rem)] max-w-[1280px] rounded-2xl bg-white @container/modal xl:mt-20 xl:mb-20 xl:w-[calc(100vw-160px)]">
-				<header className="mx-4 grid h-20 grid-cols-[1fr_auto_1fr] items-center border-b-2 border-[#B4B4B4] sm:mx-8 sm:h-[113px]">
+				<header className="mx-4 grid h-20 grid-cols-[1fr_auto_1fr] items-center border-b-2 border-border-default sm:mx-8 sm:h-[113px]">
 					<h2
 						id={titleId}
-						className="col-start-2 row-start-1 whitespace-nowrap font-[Inter] text-[32px] leading-10 font-medium text-[#31393C] sm:text-[40px] sm:leading-[48px]"
+						className="col-start-2 row-start-1 whitespace-nowrap font-inter text-[32px] leading-10 font-medium text-text-primary sm:text-[40px] sm:leading-[48px]"
 					>
 						{t('filterModalTitle')}
 					</h2>
@@ -202,7 +202,7 @@ export const FilterModal = ({
 						type="button"
 						aria-label={t('closeFilterModal')}
 						onClick={onClose}
-						className="col-start-3 row-start-1 m-0 flex size-6 shrink-0 cursor-pointer items-center justify-center justify-self-end self-center rounded-full p-0 text-[#31393C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F00]"
+						className="modal-close-button col-start-3 row-start-1 m-0 shrink-0 justify-self-end self-center"
 					>
 						<svg
 							aria-hidden="true"
@@ -234,19 +234,19 @@ export const FilterModal = ({
 						))}
 					</div>
 				</div>
-				<footer className="mx-4 flex justify-center border-t-2 border-[#B4B4B4] py-4 sm:mx-8 sm:box-border sm:h-[136px] sm:pt-[32px] sm:pb-10 @max-[556px]/modal:h-auto @max-[556px]/modal:min-h-[136px]">
+				<footer className="mx-4 flex justify-center border-t-2 border-border-default py-4 sm:mx-8 sm:box-border sm:h-[136px] sm:pt-[32px] sm:pb-10 @max-[556px]/modal:h-auto @max-[556px]/modal:min-h-[136px]">
 					<div className="grid w-full grid-cols-[minmax(0,1fr)_184px_minmax(0,1fr)] items-center gap-x-4 @max-[556px]/modal:grid-cols-1 @max-[556px]/modal:gap-y-3">
 						<button
 							type="button"
 							onClick={handleApply}
-							className="col-start-2 row-start-1 h-16 w-[184px] justify-self-center cursor-pointer rounded-2xl bg-[#FF5F00] font-[Inter] text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C] @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-1"
+							className="modal-primary-button col-start-2 row-start-1 h-16 w-[184px] justify-self-center @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-1"
 						>
 							{t('applyFilters')}
 						</button>
 						<button
 							type="button"
 							onClick={handleClearAll}
-							className="col-start-3 row-start-1 justify-self-end cursor-pointer whitespace-nowrap border-0 bg-transparent p-0 text-center font-[Inter] text-base leading-none font-medium text-[#078691] underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#078691] @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-2"
+							className="col-start-3 row-start-1 justify-self-end cursor-pointer whitespace-nowrap border-0 bg-transparent p-0 text-center font-inter text-base leading-none font-medium text-text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-text-link @max-[556px]/modal:col-start-1 @max-[556px]/modal:row-start-2"
 						>
 							{t('clearAllParameters')}
 						</button>
@@ -261,13 +261,13 @@ export const FilterModal = ({
 					event.preventDefault()
 					handleCloseConfirmation()
 				}}
-				className="fixed inset-0 m-0 open:flex h-dvh w-full max-h-none max-w-none items-center justify-center overflow-y-auto border-0 bg-transparent p-4 text-[#31393C] [&::backdrop]:bg-[rgba(27,27,27,0.3)] [&::backdrop]:backdrop-blur-[12.5px]"
+				className="modal-dialog fixed inset-0 m-0 open:flex h-dvh w-full max-h-none max-w-none items-center justify-center overflow-y-auto border-0 bg-transparent p-4"
 			>
-				<section className="flex min-h-[296px] w-full max-w-[1280px] flex-col justify-between rounded-2xl bg-white p-6 shadow-[0px_2px_12px_rgba(0,0,0,0.14)] sm:p-8 md:h-[296px]">
+				<section className="flex min-h-[296px] w-full max-w-[1280px] flex-col justify-between rounded-2xl bg-white p-6 shadow-modal sm:p-8 md:h-[296px]">
 					<header className="relative flex min-h-12 items-center justify-center px-8">
 						<h2
 							id={confirmationTitleId}
-							className="text-center font-[Inter] text-2xl leading-8 font-medium text-[#31393C] sm:text-[40px] sm:leading-[48px]"
+							className="text-center font-inter text-2xl leading-8 font-medium text-text-primary sm:text-[40px] sm:leading-[48px]"
 						>
 							{t('applyNewFilterConfirmation')}
 						</h2>
@@ -275,7 +275,7 @@ export const FilterModal = ({
 							type="button"
 							aria-label={t('closeApplyFilterConfirmation')}
 							onClick={handleCloseConfirmation}
-							className="absolute top-1/2 right-0 flex size-6 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full p-0 text-[#31393C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F00]"
+							className="modal-close-button absolute top-1/2 right-0 -translate-y-1/2"
 						>
 							<svg
 								aria-hidden="true"
@@ -297,14 +297,14 @@ export const FilterModal = ({
 						<button
 							type="button"
 							onClick={handleUseOldFilter}
-							className="h-16 w-full max-w-[280px] cursor-pointer rounded-2xl border-2 border-[#B4B4B4] bg-white font-[Inter] text-base leading-[19px] font-semibold text-[#474747] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C]"
+							className="h-16 w-full max-w-[280px] cursor-pointer rounded-2xl border-2 border-border-default bg-white font-inter text-base leading-[19px] font-semibold text-text-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
 						>
 							{t('useOldFilter')}
 						</button>
 						<button
 							type="button"
 							onClick={handleApplyNewFilter}
-							className="h-16 w-full max-w-[280px] cursor-pointer rounded-2xl border-0 bg-[#FF5F00] font-[Inter] text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C]"
+							className="modal-primary-button h-16 w-full max-w-[280px] border-0"
 						>
 							{t('applyNewFilter')}
 						</button>

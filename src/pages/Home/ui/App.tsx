@@ -38,7 +38,7 @@ export const App = () => {
 			<button
 				type="button"
 				onClick={() => setIsFilterModalOpen(true)}
-				className="mb-6 cursor-pointer rounded-lg bg-[#FF5F00] px-4 py-2 font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C]"
+				className="mb-6 cursor-pointer rounded-lg bg-brand px-4 py-2 font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary"
 			>
 				{t('openFilterModal')}
 			</button>

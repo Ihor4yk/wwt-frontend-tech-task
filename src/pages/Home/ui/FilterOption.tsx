@@ -14,7 +14,7 @@ export const FilterOption = ({
 	onChange
 }: FilterOptionProps) => (
 	<label
-		className={`flex w-full min-w-0 items-center gap-4 font-[Inter] text-[16px] leading-[19px] text-[#31393C] ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+		className={`flex w-full min-w-0 items-center gap-4 font-inter text-base leading-[19px] text-text-primary ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
 	>
 		<span className="relative flex size-6 shrink-0 items-center justify-center">
 			<input
@@ -22,7 +22,7 @@ export const FilterOption = ({
 				checked={checked}
 				disabled={disabled}
 				onChange={event => onChange(option.id, event.currentTarget.checked)}
-				className="peer absolute inset-0 z-10 size-6 appearance-none cursor-pointer rounded-[2px] border-2 border-[#31393C] bg-white checked:bg-[#31393C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F00] disabled:cursor-not-allowed"
+				className="peer absolute inset-0 z-10 size-6 appearance-none cursor-pointer rounded-[2px] border-2 border-text-primary bg-white checked:bg-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed"
 			/>
 			<span
 				aria-hidden="true"
@@ -32,11 +32,11 @@ export const FilterOption = ({
 					aria-hidden="true"
 					viewBox="0 0 12 12"
 					fill="none"
-					className="size-full"
+					className="size-full text-white"
 				>
 					<path
 						d="m2 6 2.5 2.5L10 3"
-						stroke="white"
+						stroke="currentColor"
 						strokeWidth="1.75"
 						strokeLinecap="round"
 						strokeLinejoin="round"
