@@ -13,6 +13,7 @@ export const App = () => {
 	const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
 
 	const selectedFilters = useFilterStore(state => state.selectedFilters)
+	const setSelectedFilters = useFilterStore(state => state.setSelectedFilters)
 
 	const {
 		data: filterItems = [],
@@ -63,7 +64,10 @@ export const App = () => {
 				filterItems={filterItems}
 				selectedFilters={selectedFilters}
 				onClose={() => setIsFilterModalOpen(false)}
-				onApply={() => undefined}
+				onApply={filters => {
+					setSelectedFilters(filters)
+					setIsFilterModalOpen(false)
+				}}
 			/>
 		</main>
 	)

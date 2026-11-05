@@ -23,8 +23,12 @@ export const FilterModal = ({
 }: FilterModalProps) => {
 	const { t } = useTranslation('filter')
 	const [draft, setDraft] = useState<Record<string, string[]>>({})
+	const [isConfirmationOpen, setConfirmationOpen] = useState(false)
 	const dialogRef = useRef<HTMLDialogElement>(null)
+	const confirmationDialogRef = useRef<HTMLDialogElement>(null)
+	const confirmationOpenRef = useRef(false)
 	const titleId = useId()
+	const confirmationTitleId = useId()
 
 	useLayoutEffect(() => {
 		const dialog = dialogRef.current
@@ -36,9 +40,25 @@ export const FilterModal = ({
 		if (isOpen && !dialog.open) {
 			dialog.showModal()
 		} else if (!isOpen && dialog.open) {
+			confirmationOpenRef.current = false
+			confirmationDialogRef.current?.close()
 			dialog.close()
 		}
 	}, [isOpen])
+
+	useLayoutEffect(() => {
+		const dialog = confirmationDialogRef.current
+
+		if (!dialog) {
+			return
+		}
+
+		if (isOpen && confirmationOpenRef.current && !dialog.open) {
+			dialog.showModal()
+		} else if ((!isOpen || !confirmationOpenRef.current) && dialog.open) {
+			dialog.close()
+		}
+	}, [isConfirmationOpen, isOpen])
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -62,6 +82,8 @@ export const FilterModal = ({
 	useEffect(() => {
 		if (!isOpen) {
 			setDraft({})
+			confirmationOpenRef.current = false
+			setConfirmationOpen(false)
 			return
 		}
 
@@ -111,6 +133,27 @@ export const FilterModal = ({
 	}
 
 	const handleApply = () => {
+		confirmationOpenRef.current = true
+		setConfirmationOpen(true)
+	}
+
+	const handleCloseConfirmation = () => {
+		confirmationOpenRef.current = false
+		setConfirmationOpen(false)
+	}
+
+	const handleUseOldFilter = () => {
+		handleCloseConfirmation()
+		onClose()
+	}
+
+	const handleApplyNewFilter = () => {
+		if (!confirmationOpenRef.current) {
+			return
+		}
+
+		handleCloseConfirmation()
+
 		const filters = filterItems.flatMap(filter => {
 			const selectedOptionIds = new Set(draft[filter.id] ?? [])
 			const optionsIds = filter.options
@@ -137,7 +180,12 @@ export const FilterModal = ({
 			onKeyDown={event => {
 				if (event.key === 'Escape') {
 					event.preventDefault()
-					onClose()
+					if (confirmationOpenRef.current) {
+						event.stopPropagation()
+						handleCloseConfirmation()
+					} else {
+						onClose()
+					}
 				}
 			}}
 			className="fixed inset-0 m-0 h-dvh w-full max-h-none max-w-none overflow-x-hidden overflow-y-auto overscroll-contain border-0 bg-transparent p-0 text-[#31393C] [scrollbar-gutter:stable_both-edges] [&::backdrop]:bg-[rgba(27,27,27,0.3)] [&::backdrop]:backdrop-blur-[12.5px]"
@@ -205,6 +253,64 @@ export const FilterModal = ({
 					</div>
 				</footer>
 			</div>
+			<dialog
+				ref={confirmationDialogRef}
+				aria-modal="true"
+				aria-labelledby={confirmationTitleId}
+				onCancel={event => {
+					event.preventDefault()
+					handleCloseConfirmation()
+				}}
+				className="fixed inset-0 m-0 open:flex h-dvh w-full max-h-none max-w-none items-center justify-center overflow-y-auto border-0 bg-transparent p-4 text-[#31393C] [&::backdrop]:bg-[rgba(27,27,27,0.3)] [&::backdrop]:backdrop-blur-[12.5px]"
+			>
+				<section className="flex min-h-[296px] w-full max-w-[1280px] flex-col justify-between rounded-2xl bg-white p-6 shadow-[0px_2px_12px_rgba(0,0,0,0.14)] sm:p-8 md:h-[296px]">
+					<header className="relative flex min-h-12 items-center justify-center px-8">
+						<h2
+							id={confirmationTitleId}
+							className="text-center font-[Inter] text-2xl leading-8 font-medium text-[#31393C] sm:text-[40px] sm:leading-[48px]"
+						>
+							{t('applyNewFilterConfirmation')}
+						</h2>
+						<button
+							type="button"
+							aria-label={t('closeApplyFilterConfirmation')}
+							onClick={handleCloseConfirmation}
+							className="absolute top-1/2 right-0 flex size-6 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full p-0 text-[#31393C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF5F00]"
+						>
+							<svg
+								aria-hidden="true"
+								width="20"
+								height="20"
+								viewBox="0 0 20 20"
+								fill="none"
+							>
+								<path
+									d="M1 1l18 18M19 1 1 19"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+								/>
+							</svg>
+						</button>
+					</header>
+					<div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
+						<button
+							type="button"
+							onClick={handleUseOldFilter}
+							className="h-16 w-full max-w-[280px] cursor-pointer rounded-2xl border-2 border-[#B4B4B4] bg-white font-[Inter] text-base leading-[19px] font-semibold text-[#474747] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C]"
+						>
+							{t('useOldFilter')}
+						</button>
+						<button
+							type="button"
+							onClick={handleApplyNewFilter}
+							className="h-16 w-full max-w-[280px] cursor-pointer rounded-2xl border-0 bg-[#FF5F00] font-[Inter] text-base leading-[19px] font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#31393C]"
+						>
+							{t('applyNewFilter')}
+						</button>
+					</div>
+				</section>
+			</dialog>
 		</dialog>
 	)
 }

@@ -6,6 +6,10 @@
 	"selectedFilters": "Selected filters",
 	"filterModalTitle": "Filter",
 	"applyFilters": "Apply",
+	"applyNewFilterConfirmation": "Do you want to apply new filter",
+	"useOldFilter": "Use old filter",
+	"applyNewFilter": "Apply new filter",
+	"closeApplyFilterConfirmation": "Close confirmation dialog",
 	"closeFilterModal": "Close filter dialog",
 	"openFilterModal": "Open filters",
 	"clearAllParameters": "Clear all parameters"
